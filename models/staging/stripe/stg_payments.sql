@@ -6,7 +6,7 @@ select
     status,
 
     -- amount is store in cents, convert it to dollars
-    amount / 100 as amount,
+    {{ cents__to_dollars('amount',decimal_places=4) }} as amount,
     created as created_at
 
 from {{ source('stripe', 'payment') }}
